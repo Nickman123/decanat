@@ -40,21 +40,23 @@ $("#getData_button").click(() => {
         });
 
         // Get current student's list of semesters
-        $.ajax({
-            type: 'POST',
-            url: 'http://193.218.136.174:8080/cabinet/rest/student/semesters',
-            data: JSON.stringify({ text: '', userToken: userToken }
-            ),
-            // Get inside function when error "Wrong token". How to fix?
-            success: (data) => {
-                studentSemesters = JSON.parse('{"obj":[' + data + ']}')
-                        .obj[0].studentSemesters
-                        .map(( { semesterName, groupname } ) => (
-                            { semesterName: semesterName, groupname: groupname }
-                            ));
-                console.log(studentSemesters);
-            },
-            contentType: 'application/json'
-        });
+        if (userToken) {
+            $.ajax({
+                type: 'POST',
+                url: 'http://193.218.136.174:8080/cabinet/rest/student/semesters',
+                data: JSON.stringify({ text: '', userToken: userToken }
+                ),
+                // Get inside function when error "Wrong token". How to fix?
+                success: (data) => {
+                    studentSemesters = JSON.parse('{"obj":[' + data + ']}')
+                            .obj[0].studentSemesters
+                            .map(( { semesterName, groupname } ) => (
+                                { semesterName: semesterName, groupname: groupname }
+                                ));
+                    console.log(studentSemesters);
+                },
+                contentType: 'application/json'
+            });
+        }
     });
 });
