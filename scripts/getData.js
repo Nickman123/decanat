@@ -68,7 +68,7 @@ var authorizeUser = function(resolve, reject) {
           // Проверка на успешную авторизацию
           if (data.status == 'success')
               resolve();
-          else reject(data.msg);
+          else reject(data.msg);  // При ошибке отправляем сведения о ней
       },
       contentType: "application/json"
     });
