@@ -1,41 +1,85 @@
 <! DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles/styles.css">
-    </head>
-    <body class="full-height">
-        <div class="container d-flex justify-content-center align-items-center full-height auth-page">
-            <div class="auth_block">
-                <h1 class="text-center login-title">Авторизация</h1>
-                <div class="account-wall">
-                    <div class="errorMessage">Произошла ошибка при попытке авторизации! Проверьте правильность введеных Вами данных!</div>
-                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                        alt="">
-                    <form class="form-signin">
-                    <input type="text" id="username" class="form-control" placeholder="Логин" required autofocus>
-                    <input type="password" id="password" class="form-control" placeholder="Пароль" required>
-                    <input type="text" id="token" class="form-control" placeholder="Токен" required style="margin-bottom: 10px;">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Войти</button>
-                    </form>
-                </div>
-            </div>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body class="full-height">
+    <div
+      class="container d-flex justify-content-center align-items-center full-height auth-page"
+    >
+      <div class="auth_block">
+        <h1 class="text-center login-title">Авторизация</h1>
+        <div class="account-wall">
+          <div class="errorMessage">
+            Произошла ошибка при попытке авторизации! Проверьте правильность
+            введеных Вами данных!
+          </div>
+          <img
+            class="profile-img"
+            src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+            alt=""
+          />
+          <form class="form-signin">
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="Логин"
+              required
+              autofocus
+            />
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="Пароль"
+              required
+            />
+            <input
+              type="text"
+              id="token"
+              class="form-control"
+              placeholder="Токен"
+              required
+              style="margin-bottom: 10px;"
+            />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+              Войти
+            </button>
+          </form>
         </div>
+      </div>
+    </div>
 
-        <div class="container-fluid personal-page d-flex full-height justify-content-center align-items-center">
-            <div class="personal-block">
-                <div class="personal-block__name personal-block__text text-center">
-                    <div id="full-name"></div>
-                    <hr class="personal-block__separator">
-                </div>
-                <div class="personal-block__content personal-block__text">
-                    Дата рождения: <span id="birthday"></span>
-                </div>
-            </div>
+    <div
+      class="container-fluid personal-page d-flex full-height justify-content-center align-items-center"
+    >
+      <div class="personal-block">
+        <div class="personal-block__name personal-block__text text-center">
+          <div id="full-name"></div>
+          <hr class="personal-block__separator" />
         </div>
+        <div class="personal-block__content personal-block__text">
+          Дата рождения: <span id="birthday"></span>
+        </div>
+        <div class="classmates-block__title text-center">
+          <h3>Одногруппники</h3>
+        </div>
+        <div class="classmates-block"></div>
+      </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script src="scripts/getData.js"></script>
-    </body>
+  </body>
 </html>
