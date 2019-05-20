@@ -86,8 +86,8 @@ var getInitialData = function() {
       userToken: student.token
     }),
     success: function(data) {
-      data = JSON.parse(data);
-      collectInitialData(data.student);
+        data = JSON.parse(data);
+        collectInitialData(data.student);
     },
     contentType: "application/json"
   });
@@ -129,9 +129,7 @@ var collectInitialData = function(data) {
     let fullName = data.surname + " " + data.name + " " + data.patronymic; // Полное имя
 
     $("#full-name").append(fullName);
-
     $("#birthday").append(data.birthday);
   }
 
-  // Закончил в 2:21 и отправился спать (устал уже!)
 };
