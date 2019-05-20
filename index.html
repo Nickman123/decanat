@@ -8,6 +8,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body class="full-height">
     <div
@@ -58,22 +59,22 @@
     </div>
 
     <div
-      class="container-fluid personal-page d-flex full-height justify-content-center align-items-center"
-    >
+      class="container-fluid personal-page d-flex justify-content-center align-items-center">
       <div class="personal-block">
-        <div class="personal-block__name personal-block__text text-center">
-          <div id="full-name"></div>
-          <hr class="personal-block__separator" />
-        </div>
+          <div class="personal-block__name personal-block__header personal-block__text text-center">
+            <div id="full-name"></div>
+            <hr class="personal-block__separator" />
+            </div>
         <div class="personal-block__content personal-block__text">
-          Дата рождения: <span id="birthday"></span>
+            Дата рождения: <span id="birthday"></span>
         </div>
-        <div class="classmates-block__title text-center">
-          <h3>Одногруппники</h3>
+        <div class="personal-block__text dropdown-content closed">
+            Одногруппники <i class="fas fa-chevron-down"></i>
+            <div class="classmates-block personal-block__text dropdown-more"></div>
         </div>
-        <div class="classmates-block"></div>
       </div>
     </div>
+
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -81,5 +82,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="scripts/getData.js"></script>
+    <script src="scripts/animation.js"></script>
   </body>
 </html>

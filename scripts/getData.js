@@ -23,8 +23,9 @@ $(".form-signin").submit(function(event) {
  * Переход в личный кабинет
  */
 var goToPersonalPage = function() {
-  $(".auth-page").remove(); // Скрываем блок авторизации
-  $(".personal-page").addClass("personal-page-active"); // Показываем личный кабинет
+    $(".auth-page").remove(); // Скрываем блок авторизации
+    $(".personal-page").addClass("personal-page-active"); // Показываем личный кабинет
+    $("body").css("backgroundColor", "#007bff");
 };
 
 /**
@@ -92,7 +93,10 @@ var getInitialData = function() {
   });
 };
 
-var getStudentsGroup = () => {
+/**
+ * Получение группы студента
+ */
+var getStudentsGroup = function() {
   $.ajax({
     type: "POST",
     url: "http://193.218.136.174:8080/cabinet/rest/student/classmates",
@@ -116,7 +120,7 @@ var collectInitialData = function(data) {
   if (data.hasOwnProperty("students")) {
     data.students.map((classmate, index) => {
       $(".classmates-block").append(
-        `<span>${index + 1} ${classmate.name} ${classmate.surname} ${
+        `<span>${index + 1}. ${classmate.surname} ${classmate.name}  ${
           classmate.patronymic
         }</span>`
       );

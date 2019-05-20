@@ -81,7 +81,8 @@
 
 .personal-page {
   display: none !important;
-  background-color: #007bff;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .auth-page {
@@ -109,11 +110,26 @@
   font-size: 20px;
 }
 
-.personal-block__name {
-  font-weight: 600;
-}
+
 
 .personal-block .classmates-block span {
   display: block;
   text-align: center;
+}
+
+.personal-block__header {
+    font-weight: 600;
+}
+
+
+.dropdown-content {
+    cursor: pointer;
+}
+
+.dropdown-more {
+    display: none;
+}
+
+head {
+    height: 100%;
 }
