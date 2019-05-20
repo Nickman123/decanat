@@ -112,24 +112,6 @@ var getStudentsGroup = function() {
   });
 };
 
-/**
- * Получение информации об оценках
- */
-var getInitialData = function() {
-    $.ajax({
-      type: "POST",
-      url: "http://193.218.136.174:8080/cabinet/rest/student/rating ",
-      data: JSON.stringify({
-          semester: "",
-          userToken: student.token
-      }),
-      success: function(data){;
-          data = JSON.parse(data);
-          collectInitialData(data.student);
-      },
-      contentType: "application/json",
-    });
-}
 
 /**
  * Сбор базовых данных и их вывод
