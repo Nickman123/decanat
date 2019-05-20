@@ -121,6 +121,7 @@
     font-weight: 600;
 }
 
+<<<<<<< HEAD
 
 .dropdown-content {
     cursor: pointer;
@@ -132,4 +133,8 @@
 
 head {
     height: 100%;
+=======
+.record-book {
+    background-color: #007BFF;
+>>>>>>> origin/master
 }
