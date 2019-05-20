@@ -131,6 +131,12 @@ var collectInitialData = function(data) {
 
     $("#full-name").append(fullName);
     $("#birthday").append(data.birthday);
+    $("#email").append(data.email);
+    $("#institute").append(data.institute);
+    $("#groupname").append(data.groupname);
+    $("#recordbook").append(data.recordbook);
+    $("#groupLeader").append(data.groupLeader ? "Да":"Нет");
+
   }
 
 };

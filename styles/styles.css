@@ -131,7 +131,8 @@
 
 head {
     height: 100%;
+}
 
-{
-    background-color: #007BFF;
+.personal-block__field {
+    font-weight: 600;
 }
