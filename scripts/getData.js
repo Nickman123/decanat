@@ -1,6 +1,7 @@
 // Пользователь системы
 var student = {
-  token: ""
+    token: "",
+    semesters: ""
 };
 
 $(".form-signin").submit(function(event) {
@@ -42,8 +43,9 @@ var login = function() {
  * Получение всех данных от сервера после авторизации
  */
 var getAllData = function() {
-  getInitialData(); // Получение базовых данных
-  getStudentsGroup(); // Получение списка группы
+    getInitialData(); // Получение базовых данных
+    getStudentsGroup(); // Получение списка группы
+    getSemesters().then(() => {console.log(student.semesters)});  // Получение семестров
 };
 
 /**
@@ -112,6 +114,29 @@ var getStudentsGroup = function() {
   });
 };
 
+/**
+ * Получение пройденных семестров
+ */
+var getSemesters = function() {
+    return new Promise((resolve, reject) => {
+       $.ajax({
+            type: 'POST',
+            url: 'http://193.218.136.174:8080/cabinet/rest/student/semesters',
+            data: JSON.stringify({ text: '', userToken: student.token }
+            ),
+            success: (data) => {
+                studentSemesters = JSON.parse('{"obj":[' + data + ']}')
+                        .obj[0].studentSemesters
+                        .map(( { semesterName, groupname, idLGS } ) => (
+                            { semesterName: semesterName, groupname: groupname, id: idLGS }
+                            ));
+                student.semesters = studentSemesters;
+                resolve();
+            },
+            contentType: 'application/json'
+        });
+    });
+}
 
 /**
  * Сбор базовых данных и их вывод
