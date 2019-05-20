@@ -1,8 +1,8 @@
 // Пользователь системы
 var student = {
     token: "",
-    semesters: ""
 };
+
 
 $(".form-signin").submit(function(event) {
   event.preventDefault(); // Отмена перезагрузки страницы
@@ -45,7 +45,7 @@ var login = function() {
 var getAllData = function() {
     getInitialData(); // Получение базовых данных
     getStudentsGroup(); // Получение списка группы
-    getSemesters().then(() => {console.log(student.semesters)});  // Получение семестров
+    getSemesters().then((studentSemesters) => getRecordBook(studentSemesters));  // Получение семестров
 };
 
 /**
@@ -96,7 +96,7 @@ var getInitialData = function() {
 };
 
 /**
- * Получение группы студента
+ * Получение списка одногруппников студента
  */
 var getStudentsGroup = function() {
   $.ajax({
@@ -130,13 +130,12 @@ var getSemesters = function() {
                         .map(( { semesterName, groupname, idLGS } ) => (
                             { semesterName: semesterName, groupname: groupname, id: idLGS }
                             ));
-                student.semesters = studentSemesters;
-                resolve();
+                resolve(studentSemesters);
             },
             contentType: 'application/json'
         });
     });
-}
+};
 
 /**
  * Сбор базовых данных и их вывод
@@ -162,6 +161,46 @@ var collectInitialData = function(data) {
     $("#recordbook").append(data.recordbook);
     $("#groupLeader").append(data.groupLeader ? "Да":"Нет");
 
+  } else if (data.hasOwnProperty("record")) {
+      let ratings = data.record.ratings;
+      console.log(ratings);
+      console.log(data.record.semester);
+        for (var i = 0; i < ratings.length; i++) {
+            //$("#semester-number").append(i+1);
+            console.log(ratings[i].subjectName);
+        }
   }
 
 };
+
+/**
+ * Получение зачетной книжки студента
+ * @param {object} studentSemesters Список семестров студента
+ */
+var getRecordBook = function(studentSemesters) {
+    console.log(studentSemesters);
+    for (var i = 0; i < studentSemesters.length; i++) {
+        var semesterId = studentSemesters[i].id; // Getting ID
+        var semesterName = studentSemesters[i].semesterName;
+        console.log(semesterName);
+        $.ajax({
+            type: 'POST',
+            url: 'http://193.218.136.174:8080/cabinet/rest/student/rating',
+            data: JSON.stringify({semester: semesterId, userToken: student.token}),
+            success: function(data) {
+                rating = JSON.parse(data);
+                console.log(semesterName);
+                var recordBook = new RecordBook(rating, semesterName);
+                collectInitialData(recordBook);
+            },
+            contentType: 'application/json'
+        });
+    };
+
+};
+
+
+var RecordBook = function(record, semester) {
+    this.record = record;
+    this.semester = semester;
+}
