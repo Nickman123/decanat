@@ -161,53 +161,83 @@ var collectInitialData = function(data) {
     $("#recordbook").append(data.recordbook);
     $("#groupLeader").append(data.groupLeader ? "Да":"Нет");
 
-  } else if (data.hasOwnProperty("record")) {
-      let ratings = data.record.ratings;
-      console.log(ratings);
-      console.log(data.record.semester);
-        for (var i = 0; i < ratings.length; i++) {
-            //$("#semester-number").append(i+1);
-            console.log(ratings[i].subjectName);
+  } else if (data.hasOwnProperty("rating")) {
+      let ratings = data.rating.ratings;
+      let semesterName = data.semesterName;
+      let semesterDropdown = "<div class='personal-block__text dropdown-content closed'>\
+                            <span class='personal-block__field'>" + semesterName +" семестр</span> <i class='fas fa-chevron-down'></i>\
+                            <div class='personal-block__text dropdown-more'>";
+      let table = "\
+                <table>\
+                    <thead>\
+                      <tr>\
+                        <th>Название предмета</th>\
+                        <th>Кол-во часов</th>\
+                        <th>Оценка</th>\
+                        <th>Преподаватель</th>\
+                      </tr>\
+                    </thead>\
+                    <tbody>"
+        for (let i = 0; i < ratings.length; i++) {
+            table += "<tr><td>" + ratings[i].subjectName + "</td><td>" + ratings[i].hoursCount + "</td><td>";
+            if (ratings[i].isExam && ratings[i].examrating != 0) {
+                table += ratings[i].examrating + "</td><td>" + ratings[i].examTutor + "</td></tr>";
+            }
+            else if (ratings[i].passrating == 1){
+                table += "Зачтено</td><td>" + ratings[i].passTutor + "</td></tr>";
+            }
+            else if (ratings[i].passrating > 1){
+                table += ratings[i].passrating + "</td><td>" + ratings[i].passTutor + "</td></tr>";
+            }
+            else {
+                table += "-</td><td>" + ratings[i].passTutor + "</td></tr>";
+            }
+
         }
+      table += "</tbody></table>";
+      semesterDropdown += table + "</div>\</div>";
+      $("#record-book").append(semesterDropdown);
   }
 
 };
 
+
+var semesterNumber = 0;
 /**
  * Получение зачетной книжки студента
  * @param {object} studentSemesters Список семестров студента
  */
 var getRecordBook = function(studentSemesters) {
-    for (var i = 0; i < studentSemesters.length; i++) {
-        var semesterId = studentSemesters[i].id; // Getting ID
-        var semesterName = studentSemesters[i].semesterName;
-        getOneRecordBookRequest(semesterId, semesterName).then((recordBook) => collectInitialData(recordBook));
+    if (semesterNumber < studentSemesters.length) {
+        getOneRecordBookRequest(studentSemesters).then((recordBook) => collectInitialData(recordBook));
     }
 };
 
-
 /**
  * Получение оценок за один семестр
- * @param {number} semesterId ID семестра
- * @param {string} semesterName Название семестра
+ * @param {object} studentSemesters Список семестров студента
  * @return {object} Промис
  */
-var getOneRecordBookRequest = function(semesterId, semesterName) {
+var getOneRecordBookRequest = function(studentSemesters) {
     return new Promise(function(resolve, reject) {
+        let semesterId = studentSemesters[semesterNumber].id; // Getting ID
+        let semesterName = studentSemesters[semesterNumber].semesterName;
+        semesterNumber += 1;
        $.ajax({
         type: 'POST',
         url: 'http://193.218.136.174:8080/cabinet/rest/student/rating',
         data: JSON.stringify({semester: semesterId, userToken: student.token}),
         success: function(data) {
             rating = JSON.parse(data);
-            var recordBook = {
+            let recordBook = {
                 rating : rating,
                 semesterName: semesterName
             };
+            getRecordBook(studentSemesters);
             resolve(recordBook);  // Возвращаем оценки
         },
         contentType: 'application/json'
         });
     });
-}
+};
 

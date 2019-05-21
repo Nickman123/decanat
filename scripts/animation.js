@@ -1,4 +1,4 @@
-$(".dropdown-content").click(function() {
+$(document).on("click", ".dropdown-content", function() {
     let dropdown = $(this);  // Текущий dropdown
     if (dropdown.hasClass("closed"))
         openDropdown(dropdown);
