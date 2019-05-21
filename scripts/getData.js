@@ -178,29 +178,36 @@ var collectInitialData = function(data) {
  * @param {object} studentSemesters Список семестров студента
  */
 var getRecordBook = function(studentSemesters) {
-    console.log(studentSemesters);
     for (var i = 0; i < studentSemesters.length; i++) {
         var semesterId = studentSemesters[i].id; // Getting ID
         var semesterName = studentSemesters[i].semesterName;
-        console.log(semesterName);
-        $.ajax({
-            type: 'POST',
-            url: 'http://193.218.136.174:8080/cabinet/rest/student/rating',
-            data: JSON.stringify({semester: semesterId, userToken: student.token}),
-            success: function(data) {
-                rating = JSON.parse(data);
-                console.log(semesterName);
-                var recordBook = new RecordBook(rating, semesterName);
-                collectInitialData(recordBook);
-            },
-            contentType: 'application/json'
-        });
-    };
-
+        getOneRecordBookRequest(semesterId, semesterName).then((recordBook) => collectInitialData(recordBook));
+    }
 };
 
 
-var RecordBook = function(record, semester) {
-    this.record = record;
-    this.semester = semester;
+/**
+ * Получение оценок за один семестр
+ * @param {number} semesterId ID семестра
+ * @param {string} semesterName Название семестра
+ * @return {object} Промис
+ */
+var getOneRecordBookRequest = function(semesterId, semesterName) {
+    return new Promise(function(resolve, reject) {
+       $.ajax({
+        type: 'POST',
+        url: 'http://193.218.136.174:8080/cabinet/rest/student/rating',
+        data: JSON.stringify({semester: semesterId, userToken: student.token}),
+        success: function(data) {
+            rating = JSON.parse(data);
+            var recordBook = {
+                rating : rating,
+                semesterName: semesterName
+            };
+            resolve(recordBook);  // Возвращаем оценки
+        },
+        contentType: 'application/json'
+        });
+    });
 }
+
