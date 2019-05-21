@@ -114,7 +114,6 @@
 
 .personal-block .classmates-block span {
   display: block;
-  text-align: center;
 }
 
 .personal-block__header {
@@ -135,4 +134,12 @@ head {
 
 .personal-block__field {
     font-weight: 600;
+}
+
+#attError {
+    display: none;
+}
+
+.displayBlock {
+    display: block !important;
 }

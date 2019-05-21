@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  </head>
+    </head>
   <body class="full-height">
     <div class="container d-flex justify-content-center align-items-center full-height auth-page">
       <div class="auth_block">
@@ -35,14 +35,6 @@
               placeholder="Пароль"
               required
             />
-            <input
-              type="text"
-              id="token"
-              class="form-control"
-              placeholder="Токен"
-              required
-              style="margin-bottom: 10px;"
-            />
             <button class="btn btn-lg btn-primary btn-block" type="submit">
               Войти
             </button>
@@ -51,8 +43,7 @@
       </div>
     </div>
 
-    <div
-      class="container-fluid personal-page d-flex justify-content-center align-items-center">
+    <div class="container-fluid personal-page d-flex justify-content-center align-items-center">
       <div class="personal-block">
           <div class="personal-block__name personal-block__header personal-block__text text-center">
             <div id="full-name"></div>
@@ -72,6 +63,8 @@
         </div>
         <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Зачётная книжка</button>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#attendance">Посещаемость</button>
+        <button type="button" class="btn btn-danger" style="margin-left: auto;" id="exit">Выйти из системы</button>
 
         <!-- The Modal -->
         <div class="modal fade" id="myModal">
@@ -125,6 +118,41 @@
             </div>
         </div>
 
+        <!-- The Modal -->
+        <div class="modal fade" id="attendance">
+            <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+        <div class="modal-header">
+              <h4 class="modal-title">Посещаемость</h4>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+            <!-- Modal body -->
+        <div class="modal-body attendance-area">
+          <div class="errorMessage" id="attError">
+            Произошла ошибка при попытке вывести посещаемость! Введите корректные данные!
+          </div>
+            <div class="d-flex align-items-center" style="margin-bottom: 10px;">
+                Выберите дату: <input type="date" id="attendanceDate" style="margin-left: 5px;">
+            </div>
+            <div class="d-flex align-items-center" style="margin-bottom: 10px;">
+                Выберите неделю: <select style="margin-left: 5px;" id="attendanceWeek"><option value="2">Четная</option><option value="1">Нечетная</option></select>
+            </div>
+            <button type="button" class="btn btn-danger" style="margin-bottom: 10px;" id="selectDate">Ок</button>
+            <!-- Place of table -->
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
+            </div>
+
+            </div>
+        </div>
+        </div>
       </div>
     </div>
 
