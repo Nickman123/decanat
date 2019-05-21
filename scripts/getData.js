@@ -239,7 +239,7 @@ var collectInitialData = function(data) {
                             <span class='personal-block__field'>" + semesterName +" семестр</span> <i class='fas fa-chevron-down'></i>\
                             <div class='personal-block__text dropdown-more'>";
       let table = "\
-                <table>\
+                <table class='table'>\
                     <thead>\
                       <tr>\
                         <th>Название предмета</th>\
