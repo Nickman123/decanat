@@ -65,51 +65,17 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Зачётная книжка</button>
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#attendance">Посещаемость</button>
         <button type="button" class="btn btn-danger" style="margin-left: auto;" id="exit">Выйти из системы</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#record-book-modal">Зачётная книжка</button>
 
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
+        <div class="modal fade" id="record-book-modal">
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
-
-            <!-- Modal Header -->
             <div class="modal-header">
               <h4 class="modal-title">Зачетная книжка</h4>
               <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div><div id="semester-number" style="display: inline-block;"></div> <div style="display: inline-block;">семестр</div></div>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Название предмета</th>
-                        <th>Кол-во часов</th>
-                        <th>Оценка</th>
-                        <th>Преподаватель</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                      </tr>
-                      <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                      </tr>
-                    </tbody>
-                </table>
+            <div class="modal-body" id="record-book">
             </div>
-
-            <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Закрыть</button>
             </div>
@@ -163,9 +129,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="scripts/getData.js"></script>
-    <script src="scripts/animation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+    <script src="scripts/animation.js"></script>
   </body>
 </html>
